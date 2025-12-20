@@ -1,5 +1,6 @@
 // app/layout.tsx
 import './globals.css';
+import Link from 'next/link'; // <-- import Link
 
 export const metadata = {
   title: 'NFSDWDMEMS - Dashboard',
@@ -7,6 +8,14 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const loggedInUser = {
+    id: "26e44737-a774-48ac-9e76-38eb8f0cd23d",
+    username: "user59",
+    action: "login",
+    timestamp: "2025-09-03T20:12:23.769977Z",
+    ip: "192.168.253.197"
+  };
+
   return (
     <html lang="en">
       <head>
@@ -33,7 +42,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <h1>NFSDWDMEMS</h1>
             <div className="profile">
-              <i className="fas fa-user-circle"></i>
+              {/* Make icon clickable */}
+              <Link href={`/profile/${loggedInUser.id}`}>
+                <i className="fas fa-user-circle" style={{ cursor: 'pointer' }}></i>
+              </Link>
             </div>
           </header>
 
